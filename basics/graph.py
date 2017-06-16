@@ -1,15 +1,15 @@
 import tensorflow as tf
 
-a = tf.constant(3, name='A')
-b = tf.constant(5, name='B')
-x = tf.add(a, b)
-y = tf.multiply(a, b)
-z = tf.add(x, y)
+a = tf.placeholder(tf.float32, name='a')
+b = tf.placeholder(tf.float32, name='b')
+x = tf.add(a, b, name='add_a_b')
+y = tf.multiply(a, b, name='mul_a_b')
+z = tf.add(x, y, name='add_x_y')
 
 sess = tf.Session()
-writer = tf.summary.FileWriter('./../.bin', sess.graph)
+writer = tf.summary.FileWriter('.bin', sess.graph)
 
-res = sess.run(z)
+res = sess.run(z, {a: 3, b: 5})
 print('\nResult:', res)
 
 writer.close()

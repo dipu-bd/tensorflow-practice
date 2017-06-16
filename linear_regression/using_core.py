@@ -30,7 +30,7 @@ init = tf.global_variables_initializer()
 sess = tf.Session()
 
 # define writer
-writer = tf.summary.FileWriter('../.bin', sess.graph)
+writer = tf.summary.FileWriter('.bin', sess.graph)
 
 # run the init under session
 sess.run(init)
