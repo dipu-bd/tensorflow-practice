@@ -1,1 +1,1 @@
-tensorboard --logdir="./bin" --port=6006
+tensorboard --logdir=".bin" --port=6006
