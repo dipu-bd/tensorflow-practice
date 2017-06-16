@@ -6,13 +6,13 @@ import numpy as np
 import tensorflow as tf
 
 # Model parameters
-W = tf.Variable([.3], tf.float32)
-b = tf.Variable([-.3], tf.float32)
+W = tf.Variable([.3], tf.float32, name='W')
+b = tf.Variable([-.3], tf.float32, name='b')
 
 # Model input and output
-x = tf.placeholder(tf.float32)
+x = tf.placeholder(tf.float32, name='x')
 linear_model = W * x + b
-y = tf.placeholder(tf.float32)
+y = tf.placeholder(tf.float32, name='y')
 
 # loss - sum of the square
 loss = tf.reduce_sum(tf.square(linear_model - y))
@@ -28,6 +28,11 @@ y_train = [0, -1, -2, -3]
 # initialize paramenters
 init = tf.global_variables_initializer()
 sess = tf.Session()
+
+# define writer
+writer = tf.summary.FileWriter('../bin', sess.graph)
+
+# run the init under session
 sess.run(init)
 
 # training loop
@@ -43,3 +48,6 @@ print('After training:')
 print('  W:', cur_W)
 print('  b:', cur_b)
 print('  loss:', cur_loss)
+
+sess.close()
+writer.close()
